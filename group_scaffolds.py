@@ -34,6 +34,9 @@ with open(FILE,"r") as fh:
 		#header_line = header_line.strip() # remove new line character in header line
 
 		if len(header_line) == 0: # Check if header line is blank, if its length is 0 it means eof
+			rename_file = first_scaff + "-" + scaffold_num + ".fasta"
+			rename_command = "mv temp.fasta " + rename_file
+			os.system(rename_command)
 			break
 
 		seq_line = fh.readline() # Read in sequence line
