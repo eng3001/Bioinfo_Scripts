@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --partition=bgmp              ### Partition (like a queue in PBS)
+#SBATCH --account=bgmp                ### Account used for job submission
+#SBATCH --job-name=22nt_trim         ### Job Name
+#SBATCH --output=Out__fastx_slurm-%j-%x.out     ### File in which to store job output
+#SBATCH --error=Err_fast_slurm-%j-%x.err      ### File in which to store job error messages
+#SBATCH --time=3-20:00:00             ### Wall clock time limit in Days-HH:MM:SS
+#SBATCH --nodes=1                     ### Number of nodes needed for the job
+#SBATCH --ntasks-per-node=1          ### Number of tasks to be launched per Node
+#SBATCH --cpus-per-task=2           ### Number of tasks to be launched
+
+ml easybuild FASTX-Toolkit/0.0.13
+
+fastx_trimmer -f 23 -Q33 -i /projects/bgmp/wyatte/Talapas_Lyme_Project/concat_R1_R2/combined_R1_sceloporus.fastq \
+-o /projects/bgmp/wyatte/Talapas_Lyme_Project/22nt_fastx_11.21/22nt_trimmed_sceloporus_R1.fastq
